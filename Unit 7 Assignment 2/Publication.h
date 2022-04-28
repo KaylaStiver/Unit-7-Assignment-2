@@ -12,15 +12,15 @@ enum PublicationType { BOOK, MAGAZINE, NEWSPAPER, AUDIO, VIDEO };
 
 class Publication {
 private:
-	string title = "";
-	string publisher = "";
-	float price = 0.0;
+	string title = "Example Title";
+	string publisher = "Example Publisher";
+	float price = 9.99;
 	int year = 2000;
 	PublicationType type = BOOK; //if enum class is used the << operator breaks later in the program
-	int stock = 0;
+	int stock = 10;
 
 public:
-	void storePublication(string itemTitle, string itemPublisher, double itemPrice, int itemYear, PublicationType itemType, int itemStock);
+	void storePublication(string itemTitle, string itemPublisher, float itemPrice, int itemYear, PublicationType itemType, int itemStock);
 	void displayInfo();
 	void checkOut();
 	void checkIn();
