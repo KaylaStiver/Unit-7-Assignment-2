@@ -28,7 +28,7 @@ int main() {
 	int titlePos = 0;
 	int userChoice = 0;
 	string userTitle = "";
-	Publication itemList[6] = {};
+	Publication itemList[6];
 	getPublications(itemList, count);
 	
 	do {
@@ -40,6 +40,10 @@ int main() {
 		if (userChoice == 3) {
 			cout << "Enter title you wish to search for: ";
 			titlePos = findPublication(itemList, count, userTitle);
+			if (titlePos == -1) {
+				cout << "Title not found." << endl;
+				cout << endl;
+			}
 		}
 
 		if (userChoice == 4) {
@@ -47,6 +51,7 @@ int main() {
 			titlePos = findPublication(itemList, count, userTitle);
 			if (titlePos == -1) {
 				cout << "Title not found." << endl;
+				cout << endl;
 			}
 			if (titlePos != -1) {
 				itemList[titlePos].checkOut();
@@ -60,6 +65,7 @@ int main() {
 			titlePos = findPublication(itemList, count, userTitle);
 			if (titlePos == -1) {
 				cout << "Title not found." << endl;
+				cout << endl;
 			}
 			if (titlePos != -1) {
 				itemList[titlePos].checkIn();
@@ -96,7 +102,8 @@ int getMenuChoice() {
 	cout << endl;
 	return selection;
 }
-void getPublications(Publication itemList[6], int& i) {
+void getPublications(Publication itemList[], int& count) {
+	int i = 0;
 	string itemTitle = "";
 	string itemPublisher = "";
 	float itemPrice = 0.0;
@@ -107,7 +114,7 @@ void getPublications(Publication itemList[6], int& i) {
 
 	while (inputFile >> itemTitle >> itemPublisher >> itemPrice >> itemYear >> itemTypeNum >> itemStock) {
 
-		Publication p[6];
+		Publication p;
 
 		if (itemTypeNum == 0) { // converts file inputted int into corresponding enum value
 			itemType = BOOK;
@@ -124,9 +131,9 @@ void getPublications(Publication itemList[6], int& i) {
 		if (itemTypeNum == 4) {
 			itemType = VIDEO;
 		}
-
-		p[i].storePublication(itemTitle, itemPublisher, itemPrice, itemYear, itemType, itemStock);
-		itemList[i] = p[i];
+		cout << i << endl; // doesn't output it seems
+		p.storePublication(itemTitle, itemPublisher, itemPrice, itemYear, itemType, itemStock);
+		itemList[i] = p;
 		i++;
 	}
 }
