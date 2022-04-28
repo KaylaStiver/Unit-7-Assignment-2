@@ -37,27 +37,34 @@ int main() {
 
 		if (userChoice == 2) showTitles(itemList, count);
 
-		if (userChoice == 3) findPublication(itemList, count, userTitle);
+		if (userChoice == 3) {
+			cout << "Enter title you wish to search for: ";
+			titlePos = findPublication(itemList, count, userTitle);
+		}
 
 		if (userChoice == 4) {
-			cout << "Enter title you wish to search for: ";
+			cout << "Enter title you wish to check out: ";
 			titlePos = findPublication(itemList, count, userTitle);
 			if (titlePos == -1) {
 				cout << "Title not found." << endl;
 			}
 			if (titlePos != -1) {
 				itemList[titlePos].checkOut();
+				cout << "Stock after check out: " << itemList[titlePos].getStock() << endl;
+				cout << endl;
 			}
 		}
 
 		if (userChoice == 5) {
-			cout << "Enter title you wish to search for: ";
+			cout << "Enter title you wish to check in: ";
 			titlePos = findPublication(itemList, count, userTitle);
 			if (titlePos == -1) {
 				cout << "Title not found." << endl;
 			}
 			if (titlePos != -1) {
-				itemList[titlePos].checkOut();
+				itemList[titlePos].checkIn();
+				cout << "Stock after check in: " << itemList[titlePos].getStock() << endl;
+				cout << endl;
 			}
 		}
 		if (userChoice == 6) exit;
@@ -137,7 +144,7 @@ void showTitles(Publication itemList[6], int i) {
 }
 int findPublication(Publication itemList[6], int i, string userTitle) {
 	getline(cin, userTitle);
-	cout << "User Title: " << userTitle << endl;
+	cout << endl;
 	string currTitle = "";
 	for (i = 0; i < 6; i++) {
 		currTitle = itemList[i].getTitle();

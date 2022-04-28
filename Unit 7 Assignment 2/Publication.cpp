@@ -27,8 +27,21 @@ void Publication::displayInfo() {
 	cout << endl;
 	cout << "Year: " << item.year;
 	cout << endl;
-	cout << "Type: " << item.type;
-	cout << endl;
+	if (item.type == 0) {
+		cout << "Type: Book" << endl;
+	}
+	if (item.type == 1) {
+		cout << "Type: Magazine" << endl;
+	}
+	if (item.type == 2) {
+		cout << "Type: Newspaper" << endl;
+	}
+	if (item.type == 3) {
+		cout << "Type: Audio" << endl;
+	}
+	if (item.type == 4) {
+		cout << "Type: Video" << endl;
+	}
 	cout << "Stock: " << item.stock;
 	cout << endl;
 }
